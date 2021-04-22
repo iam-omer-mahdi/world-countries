@@ -5,10 +5,10 @@
         ><i class="fa fa-globe"></i> World Countries</router-link
       >
       <div>
-        <button v-if="theme === ''" @click="theme = 'dark'">
+        <button v-if="theme === ''" @click="setTheme('dark')">
           <i class="fa fa-moon"></i> Dark Mode
         </button>
-        <button v-if="theme === 'dark'" @click="theme = ''">
+        <button v-if="theme === 'dark'" @click="setTheme('light')">
           <i class="fa fa-sun"></i> Light Mode
         </button>
       </div>
@@ -32,14 +32,35 @@ export default {
       theme: "",
     };
   },
+  methods: {
+    checkTheme() {
+      const theme = localStorage.getItem("theme");
+      if(theme !== null && theme === "dark") {
+        this.theme = theme;
+      } else if (theme === 'light') {
+        this.theme = ""
+      }
+    },
+    setTheme(variant) {
+      localStorage.setItem('theme',variant)
+      if (variant === 'dark') {
+        this.theme = 'dark'
+      } else {
+        this.theme = ''
+      }
+    }
+  },
+  created() {
+    this.checkTheme();
+  }
 };
 </script>
 
 <style lang="css">
 /* Color theme */
 :root {
-  --dark: #212121;
-  --light-dark: #333;
+  --dark: #212e37;
+  --light-dark: #2b3743;
   --light: #f2f2f2;
   --lighter: #fff;
   --shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.3);
@@ -90,6 +111,7 @@ i {
   min-height: 100vh;
   background: var(--light);
   color: var(--dark);
+  line-height: 1.4;
 }
 
 #app.dark {
@@ -97,9 +119,28 @@ i {
   color: var(--lighter);
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: var(--light);
+}
+
+.dark .overlay{
+  background: var(--dark);
+}
+
 #nav {
   padding: 0.5rem 4rem;
   display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
@@ -120,7 +161,7 @@ i {
 }
 
 .dark button {
-  background: var(--dark);
+  background: var(--light-dark);
   color: var(--lighter);
 }
 
@@ -137,5 +178,15 @@ footer {
 
 .dark footer {
   background: var(--light-dark);
+}
+
+@media screen and (max-width: 575px) {
+  #nav {
+    padding: .5rem 0.75rem;
+  }
+
+  #nav button {
+    padding: .5rem .75rem;
+  }
 }
 </style>

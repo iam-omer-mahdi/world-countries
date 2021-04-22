@@ -10,6 +10,11 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: '/country/:code',
+    name: "Country",
+    component: () => import('../views/SingleCountry.vue')
+  }
 ];
 
 const router = new VueRouter({
