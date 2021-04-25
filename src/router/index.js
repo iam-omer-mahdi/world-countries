@@ -11,15 +11,15 @@ const routes = [
     component: Home,
   },
   {
-    path: '/country/:code',
+    path: "/country/:code",
     name: "Country",
-    component: () => import('../views/Country.vue')
+    component: () => import("../views/Country.vue"),
   },
   {
-    path: '/country/',
+    path: "/country/",
     name: "CountryRedirect",
-    component: () => import('../views/Home.vue')
-  }
+    component: () => import("../views/Home.vue"),
+  },
 ];
 
 const router = new VueRouter({

@@ -129,7 +129,6 @@ i {
     background: var(--light);
   }
 
-
   #nav {
     padding: 0.5rem 4rem;
     display: flex;

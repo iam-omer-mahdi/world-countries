@@ -185,7 +185,7 @@ main {
   justify-content: center;
 }
 
-.dark  {
+.dark {
   input {
     background: var(--light-dark);
     color: var(--lighter);

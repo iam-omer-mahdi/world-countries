@@ -1,7 +1,7 @@
 <template>
   <section id="country">
-    <div class="overlay" style="position:absolute" v-if="loading">
-      <scaling-squares-spinner :color="`#666`" />
+    <div class="overlay" style="position: absolute" v-if="loading">
+      <hollow-dots-spinner :color="'#666'" />
     </div>
     <div class="container">
       <router-link to="/"
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { ScalingSquaresSpinner } from "epic-spinners";
+import HollowDotsSpinner from "../components/HollowDotsSpinner";
 import axios from "axios";
 import { gsap } from "gsap";
 export default {
@@ -79,7 +79,7 @@ export default {
     };
   },
   components: {
-    ScalingSquaresSpinner,
+    HollowDotsSpinner,
   },
   async created() {
     const vm = this;
@@ -119,9 +119,9 @@ export default {
 
 <style lang="sass" scoped>
 section
+  position: relative
   min-height: 90vh
   padding: 1.75rem 0
-  position: relative
   display: flex
   align-items: center
   overflow: hidden
