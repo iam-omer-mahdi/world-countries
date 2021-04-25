@@ -13,7 +13,12 @@ const routes = [
   {
     path: '/country/:code',
     name: "Country",
-    component: () => import('../views/SingleCountry.vue')
+    component: () => import('../views/Country.vue')
+  },
+  {
+    path: '/country/',
+    name: "CountryRedirect",
+    component: () => import('../views/Home.vue')
   }
 ];
 

@@ -15,7 +15,10 @@
     </div>
 
     <main>
-      <router-view />
+      <router-view
+        :theme="theme"
+        :key="`/country/` + ($route.params.code || '')"
+      />
     </main>
 
     <footer>
@@ -35,28 +38,28 @@ export default {
   methods: {
     checkTheme() {
       const theme = localStorage.getItem("theme");
-      if(theme !== null && theme === "dark") {
+      if (theme !== null && theme === "dark") {
         this.theme = theme;
-      } else if (theme === 'light') {
-        this.theme = ""
+      } else if (theme === "light") {
+        this.theme = "";
       }
     },
     setTheme(variant) {
-      localStorage.setItem('theme',variant)
-      if (variant === 'dark') {
-        this.theme = 'dark'
+      localStorage.setItem("theme", variant);
+      if (variant === "dark") {
+        this.theme = "dark";
       } else {
-        this.theme = ''
+        this.theme = "";
       }
-    }
+    },
   },
   created() {
     this.checkTheme();
-  }
+  },
 };
 </script>
 
-<style lang="css">
+<style lang="scss">
 /* Color theme */
 :root {
   --dark: #212e37;
@@ -100,7 +103,7 @@ i {
 }
 
 .container {
-  max-width: 90%;
+  width: 90%;
   margin: 0 auto;
 }
 /* Main Style */
@@ -112,81 +115,73 @@ i {
   background: var(--light);
   color: var(--dark);
   line-height: 1.4;
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: var(--light);
+  }
+
+
+  #nav {
+    padding: 0.5rem 4rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    background: var(--lighter);
+    .brand {
+      font-weight: bold;
+    }
+  }
+  footer {
+    background: var(--lighter);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-shadow: inset var(--shadow);
+  }
 }
 
 #app.dark {
   background: var(--dark);
   color: var(--lighter);
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  background: var(--light);
-}
-
-.dark .overlay{
-  background: var(--dark);
-}
-
-#nav {
-  padding: 0.5rem 4rem;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: var(--shadow);
-  background: var(--lighter);
-}
-
-.brand {
-  font-weight: bold;
-}
-
-.dark #nav {
-  background: var(--light-dark);
-}
-
-.dark #nav a {
-  color: var(--lighter);
-}
-
-.dark button {
-  background: var(--light-dark);
-  color: var(--lighter);
-}
-
-footer {
-  background: var(--lighter);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  box-shadow: inset var(--shadow);
-}
-
-.dark footer {
-  background: var(--light-dark);
+  .overlay {
+    background: var(--dark);
+  }
+  #nav {
+    background: var(--light-dark);
+    a {
+      color: var(--lighter);
+    }
+  }
+  button {
+    background: var(--light-dark);
+    color: var(--lighter);
+  }
+  footer {
+    background: var(--light-dark);
+  }
 }
 
 @media screen and (max-width: 575px) {
-  #nav {
-    padding: .5rem 0.75rem;
-  }
-
-  #nav button {
-    padding: .5rem .75rem;
+  #app #nav {
+    padding: 0.5rem 0.75rem;
+    button {
+      padding: 0.5rem 0.75rem !important;
+    }
   }
 }
 </style>

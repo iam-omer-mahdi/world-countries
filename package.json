@@ -1,6 +1,7 @@
 {
   "name": "world_countries",
   "version": "0.1.0",
+  "author": "Omer Mahdi",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,7 +11,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "epic-spinners": "^1.1.0",
+    "gsap": "^3.6.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
