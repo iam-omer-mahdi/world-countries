@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="theme">
-    <div id="nav">
+    <header id="nav">
       <router-link to="/" class="brand" tag="a"
         ><i class="fa fa-globe"></i> World Countries</router-link
       >
@@ -12,7 +12,7 @@
           <i class="fa fa-sun"></i> Light Mode
         </button>
       </div>
-    </div>
+    </header>
 
     <main>
       <router-view
@@ -66,7 +66,7 @@ export default {
   --light-dark: #2b3743;
   --light: #f2f2f2;
   --lighter: #fff;
-  --shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 3px 5px -3px rgba(0, 0, 0, 0.3);
   --radius: 0.2rem;
 }
 /* global resets */
@@ -109,6 +109,7 @@ i {
 /* Main Style */
 #app {
   font-family: "Nunito", sans-serif;
+  font-display: optional;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -130,7 +131,7 @@ i {
   }
 
   #nav {
-    padding: 0.5rem 4rem;
+    padding: 0.75rem 4rem;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -140,6 +141,9 @@ i {
     background: var(--lighter);
     .brand {
       font-weight: bold;
+    }
+    button {
+      box-shadow: none;
     }
   }
   footer {

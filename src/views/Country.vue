@@ -7,7 +7,7 @@
       <router-link to="/"
         ><button><i class="fa fa-arrow-left"></i> Back</button></router-link
       >
-      <main>
+      <article>
         <div
           class="flag"
           :style="`background: url(${country.flag}) center/cover no-repeat`"
@@ -51,6 +51,7 @@
             <strong>Border Countries</strong>:
             <span class="borders">
               <router-link
+                tag="span"
                 :to="`/country/${border}`"
                 v-for="border in country.borders"
                 :key="border"
@@ -60,7 +61,7 @@
             </span>
           </div>
         </div>
-      </main>
+      </article>
     </div>
   </section>
 </template>
@@ -127,7 +128,7 @@ section
   overflow: hidden
 button
     padding: .5rem 1.75rem
-main
+article
     display: grid
     gap: 1rem
     margin-top: 1rem

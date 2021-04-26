@@ -13,11 +13,13 @@
       <header>
         <input
           type="text"
+          name="search"
+          title="search"
           v-model="search"
           placeholder="Search by (name, capital, code) ..."
         />
-        <select name="filter" id="filter" v-model="region">
-          <option selected disabled hidden plceholder="filter" value="">
+        <select name="filter" id="filter" v-model="region" title="Filter By Region">
+          <option selected disabled hidden value="">
             Filter By Region
           </option>
           <option value="">All</option>
@@ -27,26 +29,32 @@
           <option value="Europe">Europe</option>
         </select>
       </header>
-      <main>
+      <article>
         <div
           class="card"
           v-for="country in filteredCountries.slice(0, slice)"
           :key="country.name"
         >
-          <router-link tag="div" :to="`/country/${country.alpha3Code}`">
+          <router-link tag="a" :to="`/country/${country.alpha3Code}`">
             <div
+              class="card-image"
               :style="`background: url(${country.flag}) center/cover;height: 150px;width:100%`"
             ></div>
             <div class="card-body">
-              <h4>{{ country.name }}</h4>
-              <div class="card-title">
-                <h5>Capital: {{ country.capital }}</h5>
-                <h5>Code: {{ country.callingCodes[0] }}</h5>
-              </div>
+              <h4 class="card-title">{{ country.name }}</h4>
+              <h5>
+                Capital: <span>{{ country.capital }}</span>
+              </h5>
+              <h5>
+                Region: <span>{{ country.region }}</span>
+              </h5>
+              <h5>
+                Population: <span>{{ country.population }}</span>
+              </h5>
             </div>
           </router-link>
         </div>
-      </main>
+      </article>
       <div id="load-more">
         <button @click="slice += 16">
           Load More <i class="fa fa-sync"></i>
@@ -152,7 +160,7 @@ header {
   }
 }
 
-main {
+article {
   display: grid;
   gap: 1.75rem;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -165,13 +173,20 @@ main {
   background: var(--lighter);
   cursor: pointer;
   transform-origin: top;
+  .card-image {
+    border-radius: var(--radius);
+  }
   .card-title {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin-top: 0.2rem;
     letter-spacing: 1px;
     h4:first-child {
       max-width: 70%;
+    }
+  }
+  h5 {
+    margin: 0.4rem 0;
+    span {
+      font-weight: normal;
     }
   }
   .card-body {
@@ -197,6 +212,9 @@ main {
   }
   .card {
     background: var(--light-dark);
+    .card-body {
+      color: #fff;
+    }
   }
   #load-more button {
     background: var(--light-dark);
