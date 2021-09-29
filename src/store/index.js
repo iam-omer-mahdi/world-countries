@@ -14,7 +14,7 @@ export default new Vuex.Store({
   actions: {
     fetchCountries: async ({ commit }) => {
       await axios
-        .get("https://restcountries.eu/rest/v2/all")
+        .get("https://restcountries.com/rest/v2/all")
         .then((response) => {
           commit("setCountries", response.data);
         });
