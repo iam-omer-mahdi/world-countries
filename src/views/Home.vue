@@ -16,7 +16,7 @@
           name="search"
           title="search"
           v-model="search"
-          placeholder="Search by (name, capital, code) ..."
+          placeholder="Search by (name, code) ..."
         />
         <select name="filter" id="filter" v-model="region" title="Filter By Region">
           <option selected disabled hidden value="">
@@ -94,8 +94,7 @@ export default {
           (country.name.toLowerCase().match(this.search.toLowerCase()) ||
             country.callingCodes[0]
               .toLowerCase()
-              .match(this.search.toLowerCase()) ||
-            country.capital.toLowerCase().match(this.search.toLowerCase())) &&
+              .match(this.search.toLowerCase())) &&
           country.region.match(this.region)
         );
       });
