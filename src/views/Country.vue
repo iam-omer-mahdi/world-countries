@@ -86,7 +86,7 @@ export default {
     const vm = this;
     // Getting data from api
     await axios
-      .get(`https://restcountries.eu/rest/v2/alpha/${vm.code}`)
+      .get(`https://restcountries.com/v2/alpha/${vm.code}`)
       .then((res) => (this.country = res.data));
     // Stoping the loader
     this.loading = false;
