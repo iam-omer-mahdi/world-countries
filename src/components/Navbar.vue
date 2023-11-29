@@ -11,12 +11,12 @@
       <div class="flex items-center gap-6">
         <div class="flex flex-col hover:bg-transparent">
           <!-- sun icon -->
-          <button title="theme switch" class="btn btn-block bg-base-300" @click="setTheme('corporate')" v-if="theme !== 'corporate'">
+          <button title="theme switch" class="btn btn-block bg-base-300" @click="setTheme()" v-if="isDark">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M122,40V16a6,6,0,0,1,12,0V40a6,6,0,0,1-12,0Zm68,88a62,62,0,1,1-62-62A62.07,62.07,0,0,1,190,128Zm-12,0a50,50,0,1,0-50,50A50.06,50.06,0,0,0,178,128ZM59.76,68.24a6,6,0,1,0,8.48-8.48l-16-16a6,6,0,0,0-8.48,8.48Zm0,119.52-16,16a6,6,0,1,0,8.48,8.48l16-16a6,6,0,1,0-8.48-8.48ZM192,70a6,6,0,0,0,4.24-1.76l16-16a6,6,0,0,0-8.48-8.48l-16,16A6,6,0,0,0,192,70Zm4.24,117.76a6,6,0,0,0-8.48,8.48l16,16a6,6,0,0,0,8.48-8.48ZM46,128a6,6,0,0,0-6-6H16a6,6,0,0,0,0,12H40A6,6,0,0,0,46,128Zm82,82a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V216A6,6,0,0,0,128,210Zm112-88H216a6,6,0,0,0,0,12h24a6,6,0,0,0,0-12Z"/></svg>
           </button>
 
           <!-- moon icon -->
-          <button title="theme switch" class="btn btn-block" @click="setTheme('business')" v-if="theme !== 'business'">
+          <button title="theme switch" class="btn btn-block" @click="setTheme()" v-if="!isDark">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232.13,143.64a6,6,0,0,0-6-1.49A90.07,90.07,0,0,1,113.86,29.85a6,6,0,0,0-7.49-7.48A102.88,102.88,0,0,0,54.48,58.68,102,102,0,0,0,197.32,201.52a102.88,102.88,0,0,0,36.31-51.89A6,6,0,0,0,232.13,143.64Zm-42,48.29a90,90,0,0,1-126-126A90.9,90.9,0,0,1,99.65,37.66,102.06,102.06,0,0,0,218.34,156.35,90.9,90.9,0,0,1,190.1,191.93Z"/></svg>
           </button>
         </div>
@@ -29,24 +29,25 @@
 export default {
   data() {
     return {
-      theme: "business",
+      isDark: true,
     };
   },
   methods: {
     checkLocalStorageTheme() {
-      const theme = localStorage.getItem("theme");
-      if (theme === null || theme === "business") {
-        this.theme = "business";
-        document.documentElement.setAttribute("data-theme", "business");
+      if (JSON.parse(localStorage.getItem("isDark")) === true || JSON.parse(localStorage.getItem("isDark")) === null) {
+        this.isDark = true;
+        localStorage.setItem("isDark", true);
+        document.documentElement.setAttribute("data-theme", "dark");
       } else {
-        this.theme = theme;
-        document.documentElement.setAttribute("data-theme", theme);
+        this.isDark = false;
+        localStorage.setItem("isDark", false);
+        document.documentElement.setAttribute("data-theme", "light");
       }
     },
-    setTheme(variant) {
-      localStorage.setItem("theme", variant);
-      this.theme = variant;
-      document.documentElement.setAttribute("data-theme", variant);
+    setTheme() {
+      this.isDark = !this.isDark;
+      localStorage.setItem("isDark", this.isDark);
+      document.documentElement.setAttribute("data-theme", this.isDark ? 'dark' : 'light');
     },
   },
   created() {

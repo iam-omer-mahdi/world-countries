@@ -11,8 +11,8 @@ export default {
     },
   },
   daisyui: {
-    themes: ['corporate','business'],
-    darkTheme: 'business'
+    themes: false,
+    darkTheme: 'dim'
   },
   plugins: [require("daisyui")],
 }

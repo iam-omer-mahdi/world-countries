@@ -62,7 +62,6 @@ import Skeleton from "../components/Skeleton.vue";
 
 export default {
     name: "Home",
-    props: ["theme"],
     data() {
         return {
             search: "",
