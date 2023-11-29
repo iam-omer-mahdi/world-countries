@@ -1,8 +1,4 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
-Vue.use(VueRouter);
+import Home from "../pages/Home.vue";
 
 const routes = [
   {
@@ -13,19 +9,13 @@ const routes = [
   {
     path: "/country/:code",
     name: "Country",
-    component: () => import("../views/Country.vue"),
+    component: () => import("../pages/Country.vue"),
   },
   {
     path: "/country/",
     name: "CountryRedirect",
-    component: () => import("../views/Home.vue"),
+    component: () => import("../pages/Home.vue"),
   },
 ];
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
-});
-
-export default router;
+export default routes;

@@ -1,12 +1,20 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue'
+import './assets/css/main.css'
+import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import routes from './router/index.js'
+import store from "./store/index.js"
 
-Vue.config.productionTip = false;
+const router = createRouter({
+    history: createWebHistory(),
+    scrollBehavior(to, from, savedPosition) {
+        // always scroll to top
+        return { top: 0 }
+    },
+    routes,
+})
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+const app = createApp(App)
+app.use(router)
+app.use(store)
+app.mount('#app')
