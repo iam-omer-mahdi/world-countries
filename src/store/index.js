@@ -8,9 +8,11 @@ const store = createStore({
       country: {},
       code: '',
       pics: [],
+      error: null,
     }
   },
   getters: {
+    getError: (state) => state.error,
     allCountries: (state) => state.countries,
     getCountryPics: (state) => {
       let randomPics = [];
@@ -41,13 +43,20 @@ const store = createStore({
         .then((response) => {
           commit("setCountry", response.data)
           commit("setCode", response.data.alpha3Code)
+          commit("setError", null)
+          commit("setPics", [])
           dispatch('fetchPics', response.data.name);
         });  
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 404 || error.response.status === 400) {
+          await commit("setError", {status: 404, message: 'Error 404 not found'})
+        }
+        if (error.status === 404 || error.status === 400) {
+          await commit("setError", {status: 404, message: 'Error 404 not found'})
+        }
       }
     },
-    fetchPics: async ({ commit, state }, countryName) => {
+    fetchPics: async ({ commit }, countryName) => {
       try {
         
         await axios
@@ -66,6 +75,7 @@ const store = createStore({
     setCountry: (state, payload) => (state.country = payload),
     setCode: (state, payload) => (state.code = payload),
     setPics: (state, payload) => (state.pics = payload),
+    setError: (state, payload) => (state.error = payload),
   },
 });
 

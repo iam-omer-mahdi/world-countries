@@ -1,4 +1,6 @@
 import Home from "../pages/Home.vue";
+import Country from "../pages/Country.vue";
+import Error from "../components/Error.vue";
 
 const routes = [
   {
@@ -7,15 +9,11 @@ const routes = [
     component: Home,
   },
   {
-    path: "/country/:code",
+    path: "/:code",
     name: "Country",
-    component: () => import("../pages/Country.vue"),
+    component: Country,
   },
-  {
-    path: "/country/",
-    name: "CountryRedirect",
-    component: () => import("../pages/Home.vue"),
-  },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: Error },
 ];
 
 export default routes;
