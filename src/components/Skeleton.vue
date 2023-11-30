@@ -1,6 +1,7 @@
 <template>
-    <div v-if="props.type == 'country'" class="container mx-auto px-2 grid gap-4 py-8">
-      <div class="flex">
+  <div>
+    <section v-if="props.type == 'country'" class="container mx-auto px-2 grid gap-4 py-8">
+      <div class="flex gap-4">
         <div class="skeleton rounded-none w-full md:w-1/3 h-52 md:h-96"></div>
         <div class="skeleton rounded-none w-1/3 h-96 hidden md:flex"></div>
         <div class="skeleton rounded-none w-1/3 h-96 hidden md:flex"></div>
@@ -16,7 +17,7 @@
           <div class="skeleton rounded-none w-full h-6 md:h-8"></div>
         </div>
       </div>
-    </div>
+    </section>
 
     <section v-if="props.type == 'grid'" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
         <!-- Box -->
@@ -29,6 +30,7 @@
             </div>
         </template>
     </section>
+  </div>
 </template>
 
 

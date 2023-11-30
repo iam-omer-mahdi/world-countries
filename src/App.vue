@@ -9,9 +9,9 @@ import { RouterView } from 'vue-router';
     <RouterView></RouterView>
   </main>
 
-  <footer class="footer footer-center p-4 bg-neutral text-neutral-content">
+  <footer class="footer footer-center p-6 border-t border-base-300 text-base-content">
   <aside>
-    <p>Mad With 💖 By Omer Mahdi</p>
+    <p class="text-lg">Mad With 💖 By Omer Mahdi</p>
   </aside>
 </footer>
 </template>

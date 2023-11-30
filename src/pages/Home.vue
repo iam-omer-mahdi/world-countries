@@ -19,10 +19,10 @@
             <Skeleton type="grid" v-if="loading" />
 
             <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-6" v-else>
-                <article class="card bg-base-100 border border-base-200 rounded-sm relative" v-for="(country, index) in filteredCountries.slice(0, slice)" :key="country.name">
+                <article class="card bg-base-100 border border-base-200 relative" v-for="(country, index) in filteredCountries.slice(0, slice)" :key="country.name">
                     
                     <RouterLink tag="a" :to="`/${country.alpha3Code}`">
-                    <figure class="border border-base-200">
+                    <figure class="border border-base-200 rounded-xl">
                         <img loading="lazy" :src="country.flag" class="w-full object-cover h-56" :alt="country.name + ' flag'" />
                     </figure>
                     <div class="card-body p-0 md:p-4">
